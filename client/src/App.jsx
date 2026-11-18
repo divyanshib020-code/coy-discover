@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react'
 import {
   Heart,
@@ -43,7 +42,9 @@ function App() {
         setProfiles(feedData)
         setMatches(matchesData)
       } catch {
-        setError('Could not connect to the server. Please check if the backend is running.')
+        setError(
+          'Could not connect to the server. Please check if the backend is running.'
+        )
       } finally {
         setLoading(false)
       }
@@ -152,6 +153,23 @@ function App() {
     touchAction: 'pan-y',
   }
 
+  // Swipe feedback intensity
+  const swipeIntensity = Math.min(Math.abs(dragX) / 100, 1)
+
+  const swipeFeedbackStyle = {
+    position: 'absolute',
+    top: '25%',
+    left: '50%',
+    transform: `translate(-50%, -50%) scale(${0.7 + swipeIntensity * 0.3})`,
+    opacity: swipeIntensity,
+    zIndex: 20,
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'opacity 0.1s ease, transform 0.1s ease',
+  }
+
   return (
     <div className="app">
 
@@ -226,6 +244,40 @@ function App() {
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerUp}
               >
+
+                {/* Swipe feedback */}
+                {Math.abs(dragX) > 10 && (
+                  <div style={swipeFeedbackStyle}>
+                    {dragX > 0 ? (
+                      <Heart
+                        size={90}
+                        strokeWidth={2.5}
+                        fill="#FF3680"
+                        color="#FF3680"
+                        style={{
+                          filter: `
+                            drop-shadow(0 0 8px #FF3680)
+                            drop-shadow(0 0 18px rgba(255, 54, 128, 0.8))
+                            drop-shadow(0 0 35px rgba(255, 54, 128, 0.5))
+                          `,
+                        }}
+                      />
+                    ) : (
+                      <X
+                        size={90}
+                        strokeWidth={3}
+                        color="#A78BFA"
+                        style={{
+                          filter: `
+                            drop-shadow(0 0 8px #A78BFA)
+                            drop-shadow(0 0 18px rgba(167, 139, 250, 0.8))
+                            drop-shadow(0 0 35px rgba(167, 139, 250, 0.5))
+                          `,
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
 
                 <div className="profile-image-container">
                   <img
@@ -321,6 +373,7 @@ function App() {
               matches.map((match) => (
                 <div className="match-item" key={match.id}>
                   <img src={match.image} alt={match.name} />
+
                   <div>
                     <h3>{match.name}, {match.age}</h3>
                     <p>It's a match!</p>
@@ -341,6 +394,7 @@ function App() {
             </div>
 
             <h1>It's a match!</h1>
+
             <p>
               You and {matchedProfile.name} liked each other.
             </p>
