@@ -1,26 +1,49 @@
 # Coy Discover
 
-A swipe-based Discover feature built as part of the Coy SDE Intern assignment.
+A swipe-based Discover feature built for the Coy SDE Intern assignment. Users browse profiles one at a time, Like or Pass, and see a match only when both people have liked each other.
 
 ## Features
 
-- Discover profiles one at a time.
-- Swipe right to Like and left to Pass.
-- Drag cards on mobile and desktop.
-- Like and Pass buttons for users who prefer clicking.
-- Mutual likes create a match.
-- Match notification popup.
-- View mutual matches in the Matches tab.
-- Swiped profiles are not shown again.
-- Empty state when all profiles have been swiped.
-- Persistent swipe and match data.
+- Browse profiles one at a time
+- Like or Pass using buttons or by dragging the card
+- A mutual Like creates a match with an "It's a match!" popup
+- Matches tab lists all mutual matches
+- Swiped profiles never reappear
+- Swipes and matches persist across reloads
+- Empty state when all profiles have been viewed
+- Responsive, mobile-first interface
 
 ## Tech Stack
 
-**Frontend:** React.js, Vite, CSS  
+**Frontend:** React, Vite, CSS, Lucide React  
 **Backend:** Node.js, Express.js  
-**Data Storage:** JSON files  
-**Icons:** Lucide React
+**Data Storage:** JSON files
+
+## Project Structure
+
+```text
+coy-discover/
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── data/
+│   │   │   └── profiles.js
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+├── server/
+│   ├── data/
+│   │   ├── profiles.json
+│   │   └── swipes.json
+│   ├── index.js
+│   └── package.json
+├── .gitignore
+└── README.md
+```
 
 ## Getting Started
 
@@ -64,38 +87,99 @@ http://localhost:5000
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/feed` | Get available profiles |
-| POST | `/swipe` | Record a Like or Pass |
-| GET | `/matches` | Get mutual matches |
+### GET /feed
 
-## Project Structure
+Returns profiles the user has not swiped on yet.
 
-```text
-coy-discover/
-├── client/
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   ├── index.css
-│   │   └── data/
-│   │       └── profiles.js
-│   └── package.json
-├── server/
-│   ├── data/
-│   │   ├── profiles.json
-│   │   └── swipes.json
-│   ├── index.js
-│   └── package.json
-├── .gitignore
-└── README.md
+Profiles that have already liked the user are not identified in the response.
+
+### POST /swipe
+
+Records a Like or Pass and checks whether it creates a mutual match.
+
+**Request body:**
+
+```json
+{
+  "profileId": 12,
+  "action": "like"
+}
 ```
+
+`action` can be `"like"` or `"pass"`.
+
+**Response when a match is created:**
+
+```json
+{
+  "message": "It's a match!",
+  "match": true,
+  "profile": {}
+}
+```
+
+The `profile` field contains the matched profile's information.
+
+**Response when no match is created:**
+
+```json
+{
+  "message": "Swipe saved successfully.",
+  "match": false
+}
+```
+
+**Error responses:**
+
+- `400` — Invalid profile ID or action
+- `404` — Profile not found
+- `409` — Profile has already been swiped on
+
+### GET /matches
+
+Returns the user's mutual matches.
+
+Only profiles that the user has Liked and that have also liked the user are included.
+
+## How Privacy Is Kept
+
+Coy's core promise is that nobody learns who liked them unless it is mutual.
+
+- The server decides whether a swipe creates a match.
+- Profiles that have already liked the user are not identified in the `/feed` response.
+- A non-mutual Like and a Pass return the same `match: false` result.
+- The `/matches` endpoint returns only mutual matches.
 
 ## Data Persistence
 
-Swipe actions and matches are stored in JSON files on the backend. The data persists across page reloads and server restarts.
+- `profiles.json` holds the 30 mock profiles.
+- `swipes.json` stores swipe actions.
+
+Swipe data persists across page reloads and server restarts.
+
+### Reset Demo Data
+
+To start fresh:
+
+1. Stop the backend server.
+2. Open `server/data/swipes.json`.
+3. Replace its contents with:
+
+```json
+{
+  "swipes": []
+}
+```
+
+4. Save the file.
+5. Restart the backend server.
+
+## Notes and Trade-offs
+
+- JSON files are used for simplicity. A real product would use a database.
+- Profile photos are placeholders.
+- There is no login. The app assumes a single logged-in user, as allowed by the assignment.
 
 ## Assignment Scope
 
-This project is a standalone demonstration of the Discover and mutual matching functionality. It uses mock profiles and assumes a single logged-in user.
+This is a standalone demonstration created for the Coy SDE Intern assignment. It uses mock profiles and a single logged-in user.
