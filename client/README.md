@@ -19,8 +19,6 @@ coy-discover/
 │   ├── public/
 │   ├── src/
 │   │   ├── assets/
-│   │   ├── data/
-│   │   │   └── profiles.js
 │   │   ├── App.jsx
 │   │   ├── App.css
 │   │   ├── index.css
