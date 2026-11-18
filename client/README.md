@@ -9,7 +9,7 @@ A swipe-based Discover feature built for the Coy SDE Intern assignment. Users br
 - A mutual Like creates a match with an "It's a match!" popup
 - Matches tab lists all mutual matches
 - Swiped profiles never reappear
-- Swipes and matches persist across reloads
+- Swipes and matches persist across reloads and server restarts
 - Empty state when all profiles have been viewed
 - Responsive, mobile-first interface
 
@@ -54,36 +54,37 @@ git clone https://github.com/divyanshib020-code/coy-discover.git
 cd coy-discover
 ```
 
-### 2. Install frontend dependencies
+### 2. Install backend dependencies
+
+```bash
+cd server
+npm install
+```
+
+### 3. Start the backend
+
+```bash
+node index.js
+```
+
+The backend will run at http://localhost:5000.
+
+### 4. Install frontend dependencies
+
+Open another terminal in the project folder:
 
 ```bash
 cd client
 npm install
 ```
 
-### 3. Start the frontend
+### 5. Start the frontend
 
 ```bash
 npm run dev
 ```
 
-The frontend will run at:
-
-http://localhost:5173
-
-### 4. Start the backend
-
-Open another terminal:
-
-```bash
-cd server
-npm install
-node index.js
-```
-
-The backend will run at:
-
-http://localhost:5000
+The frontend will run at http://localhost:5173.
 
 ## API Endpoints
 
