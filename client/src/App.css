@@ -1,0 +1,483 @@
+
+/* ===== APP LAYOUT ===== */
+
+.app {
+  min-height: 100vh;
+  background: #faf9fc;
+  color: #19151f;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+  max-width: 1100px;
+  margin: auto;
+  padding: 22px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.brand span {
+  color: #ff3680;
+}
+
+.settings-button {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #f0edf5;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #19151f;
+}
+
+/* ===== MAIN CONTAINER ===== */
+
+.main-container {
+  max-width: 650px;
+  margin: 15px auto 60px;
+  padding: 0 24px;
+}
+
+/* ===== NAVIGATION TABS ===== */
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px;
+  background: #f0edf5;
+  border-radius: 18px;
+  margin-bottom: 38px;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 10px;
+  border: none;
+  border-radius: 13px;
+  background: transparent;
+  color: #777180;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.tab.active {
+  background: white;
+  color: #19151f;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+}
+
+.match-count {
+  background: #ff3680;
+  color: white;
+  border-radius: 20px;
+  padding: 2px 7px;
+  font-size: 11px;
+}
+
+/* ===== DISCOVER PAGE ===== */
+
+.discover-page {
+  width: 100%;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  color: #ed397c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin: 0 0 8px;
+}
+
+.section-heading h1,
+.matches-page h1 {
+  font-size: 34px;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  color: #827d8b;
+  font-size: 14px;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.profile-counter {
+  background: #f0edf5;
+  border-radius: 30px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #777180;
+}
+
+/* ===== PROFILE CARD ===== */
+
+.profile-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #eeeaf2;
+  box-shadow: 0 8px 30px rgba(35, 22, 45, 0.06);
+}
+
+.profile-image-container {
+  position: relative;
+  height: 410px;
+  background: #eeeaf2;
+  overflow: hidden;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75),
+    transparent 55%
+  );
+}
+
+.profile-name {
+  position: absolute;
+  bottom: 22px;
+  left: 24px;
+  color: white;
+}
+
+.profile-name h2 {
+  font-size: 30px;
+  margin: 0 0 6px;
+}
+
+.profile-name p {
+  margin: 0;
+  font-size: 14px;
+  color: #f3edf2;
+}
+
+/* ===== PROFILE DETAILS ===== */
+
+.profile-details {
+  padding: 22px 24px 10px;
+}
+
+.profile-details h3 {
+  font-size: 14px;
+  margin: 0 0 9px;
+}
+
+.profile-details > p {
+  font-size: 14px;
+  color: #777180;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.interests span {
+  background: #f5f1f7;
+  border-radius: 30px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #625b6b;
+}
+
+/* ===== SWIPE BUTTONS ===== */
+
+.swipe-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 15px 20px 8px;
+}
+
+.pass-button,
+.like-button {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pass-button {
+  border: 2px solid #eee9f0;
+  background: white;
+  color: #777180;
+}
+
+.like-button {
+  border: 2px solid #17131f;
+  background: #ff3680;
+  color: white;
+  box-shadow: 3px 4px 0 #17131f;
+}
+
+.pass-button:hover,
+.like-button:hover {
+  transform: translateY(-3px);
+}
+
+.swipe-hint {
+  text-align: center;
+  color: #aaa4b0;
+  font-size: 11px;
+  padding: 5px 0 18px;
+}
+
+/* ===== HOME PAGE ===== */
+
+.home-page {
+  min-height: 400px;
+  background: #e9e2ff;
+  border: 2px solid #19151f;
+  border-radius: 25px;
+  box-shadow: 5px 6px 0 #19151f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.home-page > svg {
+  color: #ff3680;
+}
+
+.home-page h1 {
+  font-size: 30px;
+  margin: 20px 0 8px;
+}
+
+.home-page p {
+  color: #777180;
+  font-size: 14px;
+}
+
+/* ===== BUTTONS ===== */
+
+.primary-button {
+  border: 2px solid #19151f;
+  background: #ff3680;
+  color: #19151f;
+  border-radius: 40px;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 800;
+  box-shadow: 3px 4px 0 #19151f;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== MATCHES PAGE ===== */
+
+.matches-page {
+  min-height: 350px;
+}
+
+.match-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fce3ed;
+  padding: 14px;
+  border-radius: 18px;
+  margin-top: 15px;
+}
+
+.match-item img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.match-item h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+}
+
+.match-item p {
+  color: #e8397d;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* ===== EMPTY STATE ===== */
+
+.empty-state {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
+  background: white;
+  border: 1px solid #eeeaf2;
+  border-radius: 22px;
+  margin-top: 25px;
+}
+
+.empty-state > svg {
+  color: #ff3680;
+}
+
+.empty-state h2 {
+  font-size: 22px;
+  margin: 18px 0 5px;
+}
+
+.empty-state p {
+  color: #827d8b;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+/* ===== MATCH POPUP ===== */
+
+.match-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(20, 15, 25, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.match-modal {
+  background: white;
+  width: 100%;
+  max-width: 390px;
+  border-radius: 25px;
+  padding: 40px 25px;
+  text-align: center;
+  border: 2px solid #19151f;
+  box-shadow: 5px 6px 0 #19151f;
+}
+
+.match-heart {
+  margin-bottom: 15px;
+}
+
+.match-modal h1 {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.match-modal p {
+  color: #777180;
+  font-size: 14px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 17px 20px;
+  }
+
+  .brand {
+    font-size: 29px;
+  }
+
+  .main-container {
+    margin-top: 8px;
+    padding: 0 15px;
+  }
+
+  .tabs {
+    gap: 4px;
+    margin-bottom: 28px;
+  }
+
+  .tab {
+    font-size: 12px;
+    gap: 5px;
+    padding: 12px 5px;
+  }
+
+  .section-heading h1,
+  .matches-page h1 {
+    font-size: 29px;
+  }
+
+  .profile-image-container {
+    height: 370px;
+  }
+
+  .profile-name h2 {
+    font-size: 27px;
+  }
+
+  .profile-details {
+    padding: 20px 18px 8px;
+  }
+
+  .swipe-actions {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 380px) {
+  .profile-image-container {
+    height: 320px;
+  }
+
+  .tab {
+    font-size: 11px;
+  }
+}
